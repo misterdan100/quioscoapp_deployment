@@ -3,7 +3,7 @@ import { formatearDinero } from "../helpers/index";
 import useQuiosco from "../hooks/useQuiosco";
 
 const ResumenProducto = ({ producto }) => {
-    const { handleSetProducto, handleChangeModal, handleEditarCantidad } = useQuiosco()
+    const { handleSetProducto, handleChangeModal, handleEditarCantidad, handleEliminarProducto } = useQuiosco()
   return (
     <div className="shadow p-5 mb-3 flex gap-10 items-center">
       <div className="md:w-1/6">
@@ -59,6 +59,7 @@ const ResumenProducto = ({ producto }) => {
         <button
           type="button"
           className="bg-red-700 hover:bg-red-600 flex gap-3 px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full mt-3  border-transparent border-2 hover:border-red-800 transition"
+          onClick={() => handleEliminarProducto(producto.id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -12,7 +12,7 @@ const Sidebar = () => {
             height={100} 
             src='/assets/img/logo.svg' 
             alt='imagen logotipo' 
-            className='mx-auto'
+            className='mx-auto hover:scale-110 hover:rotate-6 transition duration-500'
         />
 
         <nav className='mt-10'>

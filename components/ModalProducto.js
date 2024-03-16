@@ -5,7 +5,7 @@ import { formatearDinero } from "../helpers";
 
 const ModalProducto = () => {
   const { producto, handleChangeModal, handleAgregarPedido, pedido } = useQuiosco();
-  const [cantidad, setCantidad] = useState(1);
+  const [ cantidad, setCantidad ] = useState(1);
   const [ edicion, setEdicion ] = useState(false)
 
   useEffect(() => {
