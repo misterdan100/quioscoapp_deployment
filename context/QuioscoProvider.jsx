@@ -38,7 +38,7 @@ const QuioscoProvider = ({children}) => {
         setModal(!modal)
     }
     // excluye las 2 primeras propiedades y hace una copia del objeto sin ellas
-    const handleAgregarPedido = ({categoriaId, imagen, ...producto}) => {
+    const handleAgregarPedido = ({categoriaId, ...producto}) => {
         if(pedido.some(productoState => productoState.id === producto.id)) {
             // Actualizar cantidad
             const pedidoActualizado = pedido.map(productoState => productoState.id === producto.id ? producto : productoState)
@@ -65,6 +65,7 @@ const QuioscoProvider = ({children}) => {
             producto,
             handleAgregarPedido,
             pedido,
+
         }}
     >
         {children}
