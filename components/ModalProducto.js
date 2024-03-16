@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import useQuiosco from "../hooks/useQuiosco";
 import { formatearDinero } from "../helpers";
 
 const ModalProducto = () => {
+  const { producto, handleChangeModal, handleAgregarPedido, pedido } = useQuiosco();
   const [cantidad, setCantidad] = useState(1);
-  const { producto, handleChangeModal, handleAgregarPedido } = useQuiosco();
+  const [ edicion, setEdicion ] = useState(false)
+
+  useEffect(() => {
+    //comprobar si modal actual existe en pedido
+    if (pedido.some(pedidoState => pedidoState.id === producto.id)) {
+
+      const productoEdicion = pedido.find(pedidoState => pedidoState.id === producto.id)
+      setEdicion(true)
+      setCantidad(productoEdicion.cantidad)
+    }
+  }, [producto, pedido])
+
+
   return (
     <div className="md:flex gap-10 rounded-lg">
       <div className="md:w-1/3">
@@ -46,7 +59,7 @@ const ModalProducto = () => {
           <button
             type="button"
             onClick={() => {
-                if(cantidad <= 1) return
+              if (cantidad <= 1) return
               setCantidad(cantidad - 1);
             }}
           >
@@ -66,12 +79,14 @@ const ModalProducto = () => {
             </svg>
           </button>
 
-          <p className="text-3xl">{cantidad}</p>
+          <p className="text-3xl">{
+            cantidad
+          }</p>
 
           <button
             type="button"
             onClick={() => {
-                if(cantidad >= 5) return
+              if (cantidad >= 5) return
               setCantidad(cantidad + 1);
             }}
           >
@@ -92,12 +107,13 @@ const ModalProducto = () => {
           </button>
         </div>
 
-        <button 
-            type="button"
-            className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white uppercase font-bold rounded-lg"
-            onClick={() => handleAgregarPedido({...producto, cantidad})}
+        <button
+          type="button"
+          className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white uppercase font-bold rounded-lg"
+          onClick={() => handleAgregarPedido({ ...producto, cantidad })}
         >
-            Añadir al pedido
+          {edicion ? 'Guardar cambios' : 'Añadir al pedido'}
+          
         </button>
       </div>
     </div>
