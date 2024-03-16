@@ -2,20 +2,21 @@ import Head from "next/head";
 import Modal from "react-modal";
 import { ToastContainer } from 'react-toastify'
 import Sidebar from "../components/Sidebar";
+import Pasos from "../components/Pasos";
 import ModalProducto from "../components/ModalProducto";
 import useQuiosco from "../hooks/useQuiosco";
 import 'react-toastify/dist/ReactToastify.css'
 
-const customstyles = { 
+const customstyles = {
   content: {
-  top: "50%", 
-  left: "50%", 
-  right: "auto", 
-  bottom: "auto", 
-  marginRight: "-50%", 
-  transform: "translate(-50%, -50%)",
-  borderRadius: '20px',
-  boxShadow: '0px 0px 30px rgba(0, 0, 0, 0.1)',
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    borderRadius: '20px',
+    boxShadow: '0px 0px 30px rgba(0, 0, 0, 0.1)',
   }
 };
 
@@ -40,7 +41,10 @@ export default function Layout({ children, pagina }) {
         </aside>
 
         <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll">
-          <div className="p-10">{children}</div>
+          <div className="p-10">
+            <Pasos />
+            {children}
+          </div>
         </main>
       </div>
       {modal && (
