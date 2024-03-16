@@ -13,7 +13,7 @@ const Categoria = ({categoria}) => {
             height={70}
             src={`/assets/img/icono_${icono}.svg`}
             alt="imagen icono"
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer hover:scale-125 hover:rotate-6 transition duration-500"
             onClick={() => handleClickCategoria(id)}
         />
 

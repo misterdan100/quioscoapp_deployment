@@ -1,12 +1,33 @@
 import Head from "next/head";
+import Modal from "react-modal";
 import Sidebar from "../components/Sidebar";
+import ModalProducto from "../components/ModalProducto";
+import useQuiosco from "../hooks/useQuiosco";
+
+const customstyles = { 
+  content: {
+  top: "50%", 
+  left: "50%", 
+  right: "auto", 
+  bottom: "auto", 
+  marginRight: "-50%", 
+  transform: "translate(-50%, -50%)",
+  borderRadius: '20px',
+  boxShadow: '0px 0px 30px rgba(0, 0, 0, 0.1)',
+  }
+};
+
+Modal.setAppElement('#__next');
 
 export default function Layout({ children, pagina }) {
+  const { modal } = useQuiosco()
+
   return (
     <>
       <Head>
         <title>Cafe - {pagina}</title>
         <meta name="description" content="Quiosco Cafeteria" />
+        <link rel="shortcut icon" href="/assets/img/icono_cafe.svg" />
       </Head>
 
       <div className="md:flex">
@@ -18,6 +39,14 @@ export default function Layout({ children, pagina }) {
           <div className="p-10">{children}</div>
         </main>
       </div>
+      {modal && (
+        <Modal
+          isOpen={modal}
+          style={customstyles}
+        >
+          <ModalProducto />
+        </Modal>
+      )}
     </>
   );
 }
