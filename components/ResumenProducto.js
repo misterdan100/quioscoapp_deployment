@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { formatearDinero } from "../helpers/index";
+import useQuiosco from "../hooks/useQuiosco";
 
 const ResumenProducto = ({ producto }) => {
+    const { handleSetProducto, handleChangeModal, handleEditarCantidad } = useQuiosco()
   return (
     <div className="shadow p-5 mb-3 flex gap-10 items-center">
       <div className="md:w-1/6">
@@ -10,6 +12,7 @@ const ResumenProducto = ({ producto }) => {
           height={400}
           alt={`imagen producto ${producto.nombre}`}
           src={`/assets/img/${producto.imagen}.jpg`}
+          className="rounded-xl"
         />
       </div>
 
@@ -29,6 +32,11 @@ const ResumenProducto = ({ producto }) => {
         <button
           type="button"
           className="bg-sky-700 hover:bg-sky-600 flex gap-3 px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full border-transparent border-2 hover:border-sky-900 transition"
+          onClick={() => {
+            // handleSetProducto(producto);
+            // handleChangeModal();
+            handleEditarCantidad(producto.id)
+          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,6 +55,7 @@ const ResumenProducto = ({ producto }) => {
           </svg>
           Editar
         </button>
+
         <button
           type="button"
           className="bg-red-700 hover:bg-red-600 flex gap-3 px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full mt-3  border-transparent border-2 hover:border-red-800 transition"
